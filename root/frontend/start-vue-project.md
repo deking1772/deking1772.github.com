@@ -143,9 +143,33 @@ vue-ts 선택 (타입스크립트를 적용하기 위해)
   > yarn dev
  ```
 
- 브라우져에 localhost:3000 으로 뜨는걸 확인할 수 있다. 아래와 같이 뜨면 성공!   
-    
- <img src="/assets/images/start-vue-project/seven.png" alt="브라우져에서 실행" /><br/> 
- 
- 이제 vite + vue3 + typescript 로 프론트 개발할 준비가 끝났다.   
- 앞으로는 vite, vue3, typescript를 공부하면서 프로젝트를 기획하고 만들어 갈것이다. 공식문서틑 틈틈히 정독하도록 하자!!
+브라우져에 localhost:3000 으로 뜨는걸 확인할 수 있다. 아래와 같이 뜨면 성공!      
+<img src="/assets/images/start-vue-project/seven.png" alt="브라우져에서 실행" /><br/> 
+
+이제 vite + vue3 + typescript 로 프론트 개발할 준비가 끝났다.   
+앞으로는 vite, vue3, typescript를 공부하면서 프로젝트를 기획하고 만들어 갈것이다. 공식문서틑 틈틈히 정독하도록 하자!!
+
+### typescript 세팅
+
+<a href="/root/frontend/VITE.html#vite-typescript-config">vite typescript 세팅</a>   
+ 위 링크를 참고해서 세팅하면 된다. tsconfig.json
+ ```
+ {
+  "compilerOptions": {
+    "types": ["vite/client"], // 이부분
+    "target": "esnext",
+    "useDefineForClassFields": true, // 이부분 (이미 세팅되어있음)
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "isolatedModules": true, // 이부분
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+ ```
