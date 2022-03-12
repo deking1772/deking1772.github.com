@@ -6,12 +6,9 @@ VUE 3.x 버전을 사용할 것이다.
 
 vue 3.x 는 사용하는 방법이 크게 두가지 이다.    
 <b>options API 방식</b>과, <b>composition API 방식 </b>중     
-composition API 방식을 사용하서 세팅할 것이다.   
+composition API 방식을 사용해서 개발 할ㄴ 것이다.   
    
 TypeScript도 공부하면서 도입할 예정이다. (처음 써봄)
-그리고 VITE 를 사용할 예정이다. VUE 공식문서에    
- "Vue CLI는 TypeScript 지원도 제공하지만 더 이상 권장되지 않습니다"   
- 라고 나와있다.
 
 
 ## 사전 준비사항
@@ -35,7 +32,7 @@ TypeScript도 공부하면서 도입할 예정이다. (처음 써봄)
    
    <br />
     
-## 프로젝트 생성
+## 프로젝트 생성 (VUE CLI)
     
 ``` 
     > cd workspace   
