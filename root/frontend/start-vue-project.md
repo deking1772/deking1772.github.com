@@ -173,3 +173,86 @@ vue-ts 선택 (타입스크립트를 적용하기 위해)
   "references": [{ "path": "./tsconfig.node.json" }]
 }
  ```
+    
+  
+## vue-router 세팅
+```shell
+  > yarn add vue-router@4
+```
+
+  /src/router.ts
+```typescript
+  import { createWebHistory, createRouter } from "vue-router";
+
+  const routes = [
+    {
+      path: "/",
+      name: "Home",
+      component: () => import("./pages/Home.vue"),
+    },
+  ];
+
+  const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  });
+
+  export default router;
+```   
+
+/src/main.ts
+```typescript
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import router from "./router"; // 추가
+
+createApp(App).use(router).mount("#app"); // .use(router) 추가
+```
+
+/src/App.vue
+```vue
+<template>
+  <div>
+    <router-view />
+  </div>
+</template>
+
+<script setup lang="ts">
+
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+</script>
+
+
+
+
+```
+   
+/src/pages 디렉토리 생성   
+/src/pages/Home.vue 파일 생성   
+```vue
+<template>
+  <div>
+      <h1>홈 입니다.</h1>
+  </div>
+</template>
+
+
+<script lang="ts">
+import { reactive } from '@vue/reactivity'
+
+export default{
+    name:"Home",
+    setup(){
+        const state = reactive({
+            data: "ddd"
+        })
+
+
+        return {state}
+    }
+}
+
+</script>
+```

@@ -27,3 +27,7 @@ AWS 에 서버를 구축하고, DB도 연결할 것이다. 그리고 이미지 �
 백엔드 : Laravel, Mysql, AWS EC2   
 
 부디 잘 해낼 수 있길...
+
+
+1. <a href="/root/frontend/start-vue-project.html">VUE JS 프로젝트 시작하기</a>   
+2. vue-router 설정

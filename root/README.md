@@ -2,7 +2,7 @@
 sort: 2
 ---
 
-# 카테고리
+# 전체보기
 
 ```
 {% raw %}{% include list.liquid all=true %}{% endraw %}
