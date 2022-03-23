@@ -1,13 +1,7 @@
-# VITE
+# VITE typescript
 
 source: `{{ page.path }}`
 
-
-# VITE 에 대해서....
-
-
-
-# VITE typescript
 
 vite는 .ts 파일을 변환만 한다. <br />즉, 타입체크는 하지않기때문에, IDE 와 build process(.vue 파일을 타입체크하기위해 빌드스크립트 tsc --noEmit 를 실행하거나, vue-tsc를 설치해서 vue-tsc --noEmit 를실행)를 다루어야 한다.   
 vite 는 esbuild 를 사용하여 typescript를 javascript로 변환하는데 vanila javascript 보다 20~30배 빠르다.    

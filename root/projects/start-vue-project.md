@@ -80,8 +80,8 @@ space 를 누르면 선택이되서 필요한 사항들을 선택하고
 ## VITE 세팅...   
 
 
+위에 vue cli로 프로젝트를 생성한 것은 연습했다치고 잊어버리자!   
 
-  
  vite 를 세팅하는 이유는... <a href="https://vuejs.org/guide/typescript/overview.html">Using Vue with TypeScript </a> 를 보면 아래와 같은 글이 나온다.
 
 
@@ -113,7 +113,7 @@ vue clic 에서 ts-loader를 사용한 방식은 아래와 같은 문제를 초�
     하... vite... 난 단지 프로젝트를 직접 구현해보는게 목적이었는데 점점 깊히들어가는것 같다.   
     그래도 다 피가되고 살이되는 공부들이니 해보자! </b>
        
-위에 vue 프로젝트 생성은 연습했다치고 잊어버리자!
+
 
 <a href="https://vitejs.dev/guide/why.html#slow-server-start">vite 공식문서</a>
 
@@ -151,7 +151,7 @@ vue-ts 선택 (타입스크립트를 적용하기 위해)
 
 ### typescript 세팅
 
-<a href="/root/frontend/VITE.html#vite-typescript-config">vite typescript 세팅</a>   
+<a href="/root/VITE/vite-typescript.html">vite typescript 세팅</a>   
  위 링크를 참고해서 세팅하면 된다. tsconfig.json
  ```
  {
@@ -174,7 +174,11 @@ vue-ts 선택 (타입스크립트를 적용하기 위해)
 }
  ```
     
-  
+<br/>
+<br/>
+<br/>
+<a href="https://wallbono.tistory.com/21">참고한 링크</a>   
+
 ## vue-router 세팅
 ```shell
   > yarn add vue-router@4
@@ -190,6 +194,11 @@ vue-ts 선택 (타입스크립트를 적용하기 위해)
       name: "Home",
       component: () => import("./pages/Home.vue"),
     },
+    {
+    path: "/test",
+    name: "Test",
+    component: () => import("./pages/Test.vue"),
+  },
   ];
 
   const router = createRouter({
@@ -256,3 +265,209 @@ export default{
 
 </script>
 ```
+
+   
+## vuex 세팅
+
+```shell
+  > yarn add vuex@next
+```
+
+/src/store 디렉토리 생성   
+/src/store/index.ts 파일 생성   
+```typescrit
+import Vuex, { StoreOptions } from "vuex";
+import moduleA from "./modules/ModuleA";
+import moduleB from "./modules/ModuleB";
+
+export interface RootState {
+  data: string;
+}
+const store: StoreOptions<RootState> = {
+  state: { data: "root" },
+  modules: { moduleA, moduleB },
+  mutations: {
+    setData(state, data: string) {
+      // -> commit('setData')
+      state.data = data;
+    },
+  },
+  actions: {
+    setRootData({ commit }, data: string) {
+      // -> dispatch('setRootData')
+      console.log("RootState set Root Data");
+      commit("setData", data);
+    },
+  },
+  getters: {
+    data: (state) => state.data, // -> getters['data']
+  },
+};
+
+export default new Vuex.Store(store);
+```   
+   
+/src/store/modules 디렉토리 생성   
+/src/store/modules/ModuleA.ts 파일 생성   
+```typescript
+import { Module } from "vuex";
+import { RootState } from "../index";
+import ModuleA from "../../types/ModuleAType";
+
+const module: Module<ModuleA, RootState> = {
+  namespaced: true, // (rootState와 구분해 주기 위한 옵션)
+  state: { data: "ModuleA Data" },
+  mutations: {
+    setData(state, data: string) {
+      // -> commit('moduleA/setData')
+      state.data = data;
+    },
+  },
+  actions: {
+    setRootData({ commit }, data: string) {
+      // -> dispatch('moduleA/setRootData')
+      console.log("module A set Root Data");
+      commit("setData", data);
+    },
+  },
+  getters: { data: (state) => state.data }, // -> getters['moduleA/data']
+};
+
+export default module;
+```   
+   
+/src/store/modules/ModuleB.ts 파일 생성
+```typescript
+import { Module } from "vuex";
+import { RootState } from "../index";
+import ModuleB from "../../types/ModuleBType";
+
+const module: Module<ModuleB, RootState> = {
+  namespaced: true,
+  state: { data: "ModuleB Data" },
+  mutations: {
+    setData(state, data: string) {
+      // -> commit('moduleB/setData')
+      state.data = data;
+    },
+  },
+  actions: {
+    setRootData({ commit }, data: string) {
+      // -> dispatch('moduleB/setRootData')
+      console.log("module B set Root Data");
+      commit("setData", data);
+    },
+  },
+  getters: { data: (state) => state.data }, // -> getters['moduleB/data']
+};
+export default module;
+```
+   
+      
+/src/types/ModuleAType.ts 파일 생성   
+```typescript
+export default interface ModuleA {
+  data: string;
+}
+```   
+   
+/src/types/ModuleBType.ts 파일 생성   
+```typescript
+export default interface ModuleB {
+  data: string;
+}
+```   
+   
+/src/main.ts 수정   
+```typescript
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import router from "./router";
+import store from "./store"; // 추가
+
+createApp(App).use(store).use(router).mount("#app"); // .use(store) 추가
+
+```   
+   
+/src/pages/Home.vue 수정   
+```vue
+<template>
+  <div>
+    <h1>안뇽 !</h1>
+    <h2>라우터 테스트</h2>
+    <router-link :to="routerTest">vuex 테스트하러 가기</router-link>
+  </div>
+</template>
+<script  lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Home",
+  data() {
+    return {
+      routerTest: "/test",
+    };
+  },
+});
+</script>
+
+<style>
+</style>
+```   
+    
+/src/pages/Test.vue 생성   
+```vue
+<template>
+  <div>
+    <h2>{{ rootStateData }}</h2>
+    <button @click="setRoot">Set Root Data</button>
+    <h2>{{ moduleAData }}</h2>
+    <button @click="setModuleA">Set ModuleA Data</button>
+    <h2>{{ moduleBData }}</h2>
+    <button @click="setModuleB">Set ModuleB Data</button>
+  </div>
+</template>
+<script  lang="ts">
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
+
+export default defineComponent({
+  name: "Test",
+  setup() {
+    const { state, dispatch } = useStore();
+    const rootStateData = computed(() => state.data);
+    const moduleAData = computed(() => state.moduleA.data);
+    const moduleBData = computed(() => state.moduleB.data);
+
+    const setRoot = () => dispatch("setRootData", "testRoot"); //RootState
+    const setModuleA = () => dispatch("moduleA/setRootData", "testModuleA"); //ModuleState
+    const setModuleB = () => dispatch("moduleB/setRootData", "testModuleB"); //ModuleState
+
+    return {
+      rootStateData,
+      moduleAData,
+      moduleBData,
+      setRoot,
+      setModuleA,
+      setModuleB,
+    };
+  },
+});
+</script>
+
+<style>
+</style>
+```   
+   
+아래 이미지 처럼 나오면 성공   
+<img src="/assets/images/start-vue-project/home-vue.png" alt="vue create 프로젝트명" width="500" /><br/>
+   
+<b>vuex 테스트 하러가기</b> 링크를 클릭하면 하래 화면이 나온다.   
+<img src="/assets/images/start-vue-project/test-vue.png" alt="vue create 프로젝트명" width="500" /><br/>   
+
+프론트엔드의 모든 세팅은 끝났다.   
+이제부터는 프로젝트를 개발 하면서 부족한 vite 지식과 typescript 지식을 공부하면서   
+프로젝트를 이끌어 나가면 된다.   
+
+

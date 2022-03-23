@@ -28,6 +28,11 @@ AWS 에 서버를 구축하고, DB도 연결할 것이다. 그리고 이미지 �
 
 부디 잘 해낼 수 있길...
 
-
-1. <a href="/root/frontend/start-vue-project.html">VUE JS 프로젝트 시작하기</a>   
-2. vue-router 설정
+## 프론트엔드 세팅
+1. <a href="./start-vue-project.html">VUE JS 프로젝트 시작하기</a>   
+2. <a href="./start-vue-project.html#vue-router-세팅">vue-router 세팅</a>   
+3. <a href="./start-vue-project.html#vuex-세팅">vuex 세팅</a>   
+   
+      
+## 프로젝트 디자인 
+1. 레이아웃
