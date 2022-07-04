@@ -420,11 +420,10 @@ export default {
         return false;
     }
 ```
-    줄바꿈에대한 처리이다. 즉, 엔터키를 누를때 발생한다. 로직은 입력중인 줄이 두번째 줄일 때, 엔터를 입력하면 e.preventDefault()가 입력을 제한한다.
-    keyPress event 에서는 input 이벤트를 e.preventDefault() 로 막을 수 있다.
-
-    추가적인 미션은 textarea 에서 focusout 되었을 때, api 를 쏴서 데이터를 업데이트 후 다시 p 태그로 토글 되는것이다.
-    물론 p태그에는 textarea 에 입력된 텍스트가 노출되어야 한다. 이 이야기는 주제와 벗어나므로 생략하기로 한다.
+   줄바꿈에대한 처리이다. 즉, 엔터키를 누를때 발생한다. 로직은 입력중인 줄이 두번째 줄일 때, 엔터를 입력하면 e.preventDefault()가 입력을 제한한다.
+   keyPress event 에서는 input 이벤트를 e.preventDefault() 로 막을 수 있다.
+   추가적인 미션은 textarea 에서 focusout 되었을 때, api 를 쏴서 데이터를 업데이트 후 다시 p 태그로 토글 되는것이다.
+   물론 p태그에는 textarea 에 입력된 텍스트가 노출되어야 한다. 이 이야기는 주제와 벗어나므로 생략하기로 한다.
 
 
 
