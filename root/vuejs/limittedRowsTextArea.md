@@ -333,7 +333,7 @@ export default {
    keypress 이벤트에는 actions.keyPressEvent($event) 가 걸려있다.
 
    우선 알아두어야 할 점은 textarea 의 input 이벤트에서 e.preventDefault(); 로 입력을 제한하는것은 통하지않는다.
-   이번에 처음알게된 사실이다. 해보면 안된다.
+   이번에 처음알게된 사실이다. 해보면 안된다는것을 알 수 있다.
 
    먼저 inputEvent 함수를 살펴보자.
 
