@@ -2,6 +2,8 @@
 
 source: `{{ page.path }}`
 
+**참고)** [카카오로그인 개발자 문서](https://developers.kakao.com/docs/latest/ko/getting-started/sdk-js)
+
 
 - **준비사항**
 VUE JS 프로젝트 (이건 상관 없다. 내가 VUEJS 를 써서 그냥 쓴거임)
@@ -18,7 +20,7 @@ VUE JS 프로젝트 (이건 상관 없다. 내가 VUEJS 를 써서 그냥 쓴거
 코드 구현 위주로 설명을 진행할 예정이다.
 
 
-1. JAVASCRIPT SDK 삽입   
+**1. JAVASCRIPT SDK 삽입**   
    /public/index.html
 
 ```HTML
@@ -29,8 +31,8 @@ VUE JS 프로젝트 (이건 상관 없다. 내가 VUEJS 를 써서 그냥 쓴거
 </head>
 ```
 
+**2. Login 페이지, 라우트 구현**   
 
-2. Login 페이지, 라우트 구현
 /src/router/index.js
 ```javascript
 // ...
@@ -148,6 +150,7 @@ params 에 담긴 redirect_uri 와 kakao developer console 에 설정된 uri 랑
 
 <br/>
 
+**3. sns 모듈 만들기 (kakao)**
 SocialCallBack.vue 파일을 보기 전에   
 /src/helper/sns.js 에 모듈을 추가하자.   
 ```javascript
@@ -217,6 +220,7 @@ export default new sns();
 
 <br />
 
+**4. SocialCallBack.vue 리다이렉트 페이지 만들기**
 **/src/pages/SocialCallBack.vue**
 ```vue
 <template>
